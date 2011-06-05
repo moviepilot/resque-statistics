@@ -1,0 +1,38 @@
+<% @subtabs = %w( table graph ) %>
+
+<% if params[:key] == 'graph' %>
+<% else %>
+<% end %>
+
+<h1>Job Statistics</h1>
+
+<p class='intro'>
+  bla
+</p>
+
+<table>
+  <tr>
+    <th>Job Name</th>
+    <th>Enqueued Jobs</th>
+    <th>Average Queue Wait Time</th>
+    <th>Average Execution Time</th>
+  </tr>
+  <% job_statistics.each do |job_name| %>
+    <tr>
+      <td>
+        <%= job_name %>
+      </td>
+      <td>
+      </td>
+      <td>
+        <%= Resque::Plugins::Statistics::EnqueuingTime.average( job_name ) %>
+      </td>
+      <td>
+        <%= Resque::Plugins::Statistics::ExecutionTime.average( job_name ) %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+
+
